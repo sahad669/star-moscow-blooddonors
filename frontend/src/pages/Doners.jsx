@@ -237,7 +237,7 @@ const Doners = () => {
                       </a>
                       <a
                         href={`tel:${donor.phone}`}
-                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-3 py-2.5 text-xs font-semibold text-white transition hover:bg-red-700 sm:text-sm"
                       >
                         <FaPhoneAlt size={28} />
                       </a>
