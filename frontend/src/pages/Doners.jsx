@@ -1,17 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import { getAllDonors, filterDonors } from "../features/donerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  Search,
-  Droplets,
-  RotateCcw,
-  MessageCircle,
-  UserRound,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { Search, Droplets, RotateCcw, MapPin } from "lucide-react";
+import { FaWhatsapp, FaPhoneAlt, FaInfoCircle } from "react-icons/fa";
 
 const Doners = () => {
   const dispatch = useDispatch();
@@ -36,7 +28,7 @@ const Doners = () => {
           filterDonors({
             name: searchName,
             bloodGroup: filterBlood,
-          })
+          }),
         );
       }
     }, 400);
@@ -55,7 +47,7 @@ const Doners = () => {
   };
 
   return (
-    <section className="min-h-screen bg-linear-to-b from-red-50 via-white to-rose-50 px-3 py-5 sm:px-5 lg:px-8">
+    <section className="min-h-screen bg-linear-to-b from-red-50 via-white to-rose-50 px-3 pt-10 pb-15 sm:px-5 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-6 rounded-4xl border border-red-100 bg-white/80 p-5 shadow-sm backdrop-blur-sm sm:p-6">
@@ -135,12 +127,17 @@ const Doners = () => {
         {/* No results */}
         {!loading && donors.length === 0 && isFilteringActive && (
           <div className="mx-auto max-w-2xl rounded-4xl border border-red-100 bg-white p-8 text-center shadow-md">
-            <h3 className="text-2xl font-bold text-red-500">No Results Found</h3>
+            <h3 className="text-2xl font-bold text-red-500">
+              No Results Found
+            </h3>
 
             {searchName && !filterBlood && (
               <p className="mt-3 text-slate-700">
                 No donor found with name
-                <span className="font-semibold text-red-500"> {searchName}</span>
+                <span className="font-semibold text-red-500">
+                  {" "}
+                  {searchName}
+                </span>
               </p>
             )}
 
@@ -157,8 +154,11 @@ const Doners = () => {
             {searchName && filterBlood && (
               <p className="mt-3 text-slate-700">
                 No donor found with name
-                <span className="font-semibold text-red-500"> {searchName}</span>
-                {" "}and blood group
+                <span className="font-semibold text-red-500">
+                  {" "}
+                  {searchName}
+                </span>{" "}
+                and blood group
                 <span className="font-semibold text-red-500">
                   {" "}
                   {filterBlood}
@@ -203,7 +203,7 @@ const Doners = () => {
                   <div className="relative px-3">
                     <div className="-mt-10 flex justify-center sm:-mt-12">
                       <img
-                        src={donor.imageurl ||"/images/defult-img.jpg"}
+                        src={donor.imageurl || "/images/defult-img.jpg"}
                         alt={donor.fullName}
                         className="h-20 w-20 rounded-full border-4 border-white object-cover shadow-md sm:h-24 sm:w-24"
                       />
@@ -215,41 +215,37 @@ const Doners = () => {
                     <h3 className="line-clamp-2 min-h-[2.8rem] text-[15px] font-extrabold leading-5 text-slate-900 sm:text-lg">
                       {donor.fullName}
                     </h3>
-
-                    <div className="mt-2 flex items-center justify-center gap-1 text-sm text-blue-700 sm:text-sm">
-                      <Phone size={13} />
-                      <span className="truncate">{donor.phone}</span>
-                    </div>
-
-                    <div className="mt-1 flex items-center justify-center gap-1 text-sm text-blue-700 sm:text-sm">
-                      <MapPin size={13} />
-                      <span className="truncate">{donor.place}</span>
-                    </div>
-
                     <div className="mt-3 flex justify-center">
                       <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-600 ring-1 ring-red-100 sm:text-sm">
                         {donor.bloodGroup}
                       </span>
                     </div>
+                    <div className="mt-1 flex items-center justify-center gap-1 text-sm text-blue-700 sm:text-sm">
+                      <MapPin size={13} />
+                      <span className="truncate">{donor.place}</span>
+                    </div>
 
                     {/* action icons */}
-                    <div className="mt-4 grid grid-cols-2 gap-2">
+                    <div className="mt-4 grid grid-cols-3 gap-2">
                       <a
                         href={whatsappLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-50 px-3 py-2.5 text-xs font-semibold text-green-700 ring-1 ring-green-100 transition hover:bg-green-100 sm:text-sm"
                       >
-                        <MessageCircle size={16} />
-                        WhatsApp
+                        <FaWhatsapp size={28} />
                       </a>
-
+                      <a
+                        href={`tel:${donor.phone}`}
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                      >
+                        <FaPhoneAlt size={28} />
+                      </a>
                       <Link
                         to={`/singledonor/${donor._id}`}
                         className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-50 px-3 py-2.5 text-xs font-semibold text-red-700 ring-1 ring-red-100 transition hover:bg-red-100 sm:text-sm"
                       >
-                        <UserRound size={16} />
-                        Details
+                        <FaInfoCircle size={28} />
                       </Link>
                     </div>
                   </div>
