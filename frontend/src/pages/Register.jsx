@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDonor } from "../features/donerSlice";
@@ -6,7 +5,7 @@ import { HeartPulse, Upload, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.donor);
 
@@ -32,7 +31,12 @@ const Register = () => {
     try {
       await dispatch(addDonor(data)).unwrap();
       resetForm();
-       navigate("/donor");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      navigate("/donor");
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +65,13 @@ const Register = () => {
     }
   };
 
+  //  const handleScrollTop = () => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // };
+
   return (
     <section className="min-h-screen bg-linear-to-b from-red-50 via-white to-rose-50 px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[1fr_1.1fr]">
@@ -78,9 +89,9 @@ const Register = () => {
             </h1>
 
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              Join the Star Moscow Blood Donors community by adding your details.
-              A simple registration can help someone find urgent support at the
-              right time.
+              Join the Star Moscow Blood Donors community by adding your
+              details. A simple registration can help someone find urgent
+              support at the right time.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">

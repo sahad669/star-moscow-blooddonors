@@ -1,11 +1,16 @@
-
-
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Heart } from "lucide-react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const handleScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const navLinkClass = ({ isActive }) =>
     `rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
@@ -24,13 +29,11 @@ const Navbar = () => {
             className="flex min-w-0 items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            
-              <img
-                src="/images/star-mosco-icon.png"
-                alt="Star Moscow Blood Donors logo"
-                className="h-35 shrink-0 rounder-xl object-contain"
-              />
-            
+            <img
+              src="/images/star-mosco-icon.png"
+              alt="Star Moscow Blood Donors logo"
+              className="h-35 shrink-0 rounder-xl object-contain"
+            />
 
             <div className="min-w-0">
               <p className="truncate text-sm font-extrabold tracking-wide text-slate-900 sm:text-base">
@@ -44,15 +47,23 @@ const Navbar = () => {
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-2 sm:flex">
-            <NavLink to="/" className={navLinkClass}>
+            <NavLink to="/" onClick={handleScrollTop} className={navLinkClass}>
               Home
             </NavLink>
 
-            <NavLink to="/donor" className={navLinkClass}>
+            <NavLink
+              to="/donor"
+              onClick={handleScrollTop}
+              className={navLinkClass}
+            >
               Donors
             </NavLink>
 
-            <NavLink to="/register" className={navLinkClass}>
+            <NavLink
+              to="/register"
+              onClick={handleScrollTop}
+              className={navLinkClass}
+            >
               Register
             </NavLink>
           </div>
