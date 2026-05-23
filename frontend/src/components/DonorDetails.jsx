@@ -13,6 +13,7 @@ import {
   HeartPulse,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { HashLoader } from "react-spinners";
 
 const DonorDetails = () => {
   const { id } = useParams();
@@ -36,6 +37,7 @@ const DonorDetails = () => {
     return (
       <section className="min-h-screen bg-linear-to-b from-red-50 via-white to-rose-50 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl rounded-4xl border border-red-100 bg-white p-8 text-center shadow-sm">
+          <HashLoader color="#dc2626" loading={loading} size={60} />
           <p className="text-sm font-medium text-slate-500">
             Loading donor details...
           </p>
