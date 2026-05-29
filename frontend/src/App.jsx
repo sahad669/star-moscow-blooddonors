@@ -6,17 +6,19 @@ import DonorDetails from "./components/DonorDetails";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Contact from "./pages/Contact";
 const App = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="register" element={<Register />} />
         <Route path="donor" element={<Doners />} />
         <Route path="/" element={<Home />} />
-        <Route path="/singledonor/:id" element={<DonorDetails/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/singledonor/:id" element={<DonorDetails />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };
