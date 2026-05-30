@@ -7,9 +7,12 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
+
 const App = () => {
   return (
     <>
+    <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="register" element={<Register />} />
@@ -24,3 +27,4 @@ const App = () => {
 };
 
 export default App;
+

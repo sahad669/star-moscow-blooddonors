@@ -45,14 +45,31 @@ export const getAllDonors = createAsyncThunk(
 // FILTER DONORS
 export const filterDonors = createAsyncThunk(
   "donate/filterDonors",
-  async ({ name, bloodGroup }, { rejectWithValue }) => {
+  async (
+    { name, bloodGroup, taluk, district, gender },
+    { rejectWithValue },
+  ) => {
     try {
       const query = new URLSearchParams();
 
-      if (name) query.append("name", name);
+      if (name) {
+        query.append("name", name);
+      }
 
       if (bloodGroup) {
         query.append("bloodGroup", bloodGroup);
+      }
+
+      if (taluk) {
+        query.append("taluk", taluk);
+      }
+
+      if (district) {
+        query.append("district", district);
+      }
+
+      if (gender) {
+        query.append("gender", gender);
       }
 
       const res = await axiosInstants.get(
@@ -92,7 +109,7 @@ const donorSlice = createSlice({
 
   initialState: {
     donors: [], //all donors array
-     donor: null, //saved single donor 
+    donor: null, //saved single donor
     loading: false,
     error: null,
   },

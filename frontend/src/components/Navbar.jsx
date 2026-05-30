@@ -6,12 +6,7 @@ import { Menu, X, Heart } from "lucide-react";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const handleScrollTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+
 
   const navLinkClass = ({ isActive }) =>
     `rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
@@ -58,7 +53,7 @@ const Navbar = () => {
             <div className="hidden sm:flex items-center gap-2">
               <NavLink
                 to="/"
-                onClick={handleScrollTop}
+              
                 className={navLinkClass}
               >
                 Home
@@ -66,7 +61,7 @@ const Navbar = () => {
 
               <NavLink
                 to="/donor"
-                onClick={handleScrollTop}
+               
                 className={navLinkClass}
               >
                 Donors
@@ -74,7 +69,7 @@ const Navbar = () => {
 
               <NavLink
                 to="/register"
-                onClick={handleScrollTop}
+               
                 className={navLinkClass}
               >
                 Register
@@ -82,7 +77,7 @@ const Navbar = () => {
 
               <NavLink
                 to="/contact"
-                onClick={handleScrollTop}
+               
                 className={navLinkClass}
               >
                 Contacts

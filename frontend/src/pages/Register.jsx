@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDonor } from "../features/donerSlice";
-import { HeartPulse, Upload, UserPlus } from "lucide-react";
+import {
+  HeartPulse,
+  Upload,
+  UserPlus,
+  MapPin,
+  HeartHandshake,
+  Globe,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { keralaDistricts } from "../data/keralaLocation";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,10 +23,45 @@ const Register = () => {
     phone: "",
     whatsapp: "",
     bloodGroup: "",
+    gender: "",
+    district: "",
+    taluk: "",
     place: "",
     dateOfBirth: "",
     image: null,
   });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    if (name === "image") {
+      setFormData({ ...formData, image: files[0] });
+    } else if (name === "district") {
+      setFormData({
+        ...formData,
+        district: value,
+        taluk: "",
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      whatsapp: "",
+      bloodGroup: "",
+      gender: "",
+      district: "",
+      taluk: "",
+      place: "",
+      dateOfBirth: "",
+      image: null,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,56 +74,25 @@ const Register = () => {
     try {
       await dispatch(addDonor(data)).unwrap();
       resetForm();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       navigate("/donor");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const resetForm = () => {
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      whatsapp: "",
-      bloodGroup: "",
-      place: "",
-      dateOfBirth: "",
-      image: null,
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    if (name === "image") {
-      setFormData({ ...formData, image: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  //  const handleScrollTop = () => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   });
-  // };
+  const inputClass =
+    "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100 disabled:cursor-not-allowed disabled:bg-slate-50";
 
   return (
     <section className="min-h-screen bg-linear-to-b from-red-50 via-white to-rose-50 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[1fr_1.1fr]">
-        {/* Left content */}
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        {/* Left side */}
         <div className="order-2 lg:order-1">
-          <div className="sticky top-24 rounded-4xl border border-red-100 bg-white/80 p-6 shadow-xl backdrop-blur-sm sm:p-8">
+          <div className="rounded-4xl border border-red-100 bg-white/80 p-6 shadow-sm backdrop-blur-sm sm:p-8 lg:sticky lg:top-24">
             <div className="inline-flex items-center gap-2 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-700">
               <HeartPulse size={18} />
-              Donor Registration
+              Become a Lifesaver
             </div>
 
             <h1 className="mt-5 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
@@ -90,31 +102,38 @@ const Register = () => {
 
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
               Join the Star Moscow Blood Donors community by adding your
-              details. A simple registration can help someone find urgent
-              support at the right time.
+              details. A quick registration can help someone find urgent support
+              at the right time.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl bg-red-50 p-4 ring-1 ring-red-100">
-                <p className="text-sm font-semibold text-red-700">
-                  Fast registration
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-red-600 shadow-sm">
+                  <HeartHandshake size={18} />
+                </div>
+                <p className="text-sm font-semibold text-slate-900">
+                  Join the Donor Community
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Submit your donor details in a clear and simple form.
+                 Become part of a growing network of voluntary blood donors ready to help others.
                 </p>
               </div>
 
               <div className="rounded-2xl bg-white p-4 ring-1 ring-slate-200">
-                <p className="text-sm font-semibold text-slate-800">
-                  Mobile friendly
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-red-50 text-red-600">
+                  <Globe size={18} />
+                </div>
+                <p className="text-sm font-semibold text-slate-900">
+                 Expanding Lifesaving Support
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Designed to work smoothly on phones, tablets, and desktop.
+                  Starting locally with a vision to connect donors and save
+                  lives everywhere.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-3xl border border-red-100 bg-linear-to-br from-red-100 to-white p-4">
+            <div className="mt-8 rounded-3xl border border-red-100 bg-linear-to-br from-red-100 to-white p-4">
               <img
                 src="/images/star-mos-icon.png"
                 alt="Blood donor registration"
@@ -124,7 +143,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Form */}
+        {/* Right side form */}
         <div className="order-1 lg:order-2">
           <div className="relative">
             <div className="absolute -inset-3 rounded-4xl bg-red-200/40 blur-3xl"></div>
@@ -140,10 +159,10 @@ const Register = () => {
 
                 <div>
                   <h2 className="text-2xl font-extrabold text-slate-900">
-                    Register as Donor
+                    Become a Blood Donor
                   </h2>
                   <p className="mt-1 text-sm text-slate-500">
-                    Fill in your details carefully to join the donor list.
+                    Join our donor community and help save lives during emergencies.
                   </p>
                 </div>
               </div>
@@ -154,12 +173,11 @@ const Register = () => {
                     Full Name
                   </label>
                   <input
-                    type="text"
                     name="fullName"
-                    placeholder="Enter your full name"
+                    placeholder="Enter full name"
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
@@ -168,26 +186,25 @@ const Register = () => {
                     Email Address
                   </label>
                   <input
-                    type="email"
                     name="email"
-                    placeholder="Enter your email address"
+                    type="email"
+                    placeholder="Enter email address"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Mobile Number
+                    Phone Number
                   </label>
                   <input
-                    type="text"
                     name="phone"
-                    placeholder="Include country code (e.g. +91)"
+                    placeholder="Enter phone number"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
@@ -196,12 +213,11 @@ const Register = () => {
                     WhatsApp Number
                   </label>
                   <input
-                    type="text"
                     name="whatsapp"
-                    placeholder="Include country code (e.g. +91) "
+                    placeholder="Enter WhatsApp number"
                     value={formData.whatsapp}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
@@ -213,35 +229,91 @@ const Register = () => {
                     name="bloodGroup"
                     value={formData.bloodGroup}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   >
-                    <option value="">Select Blood Group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
+                    <option value="">Select blood group</option>
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Location / Place
+                    Gender
+                  </label>
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    className={inputClass}
+                  >
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-700">
+                    District
+                  </label>
+                  <select
+                    name="district"
+                    value={formData.district}
+                    onChange={handleChange}
+                    className={inputClass}
+                  >
+                    <option value="">Select district</option>
+                    {Object.keys(keralaDistricts).map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-700">
+                    Taluk
+                  </label>
+                  <select
+                    name="taluk"
+                    value={formData.taluk}
+                    onChange={handleChange}
+                    className={inputClass}
+                    disabled={!formData.district}
+                  >
+                    <option value="">Select taluk</option>
+                    {formData.district &&
+                      keralaDistricts[formData.district].map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-700">
+                    Place
                   </label>
                   <input
-                    type="text"
                     name="place"
-                    placeholder="Local Area,City/Town,District"
+                    placeholder="Enter place, village"
                     value={formData.place}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
-                <div className="sm:col-span-2">
+                <div>
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
                     Date of Birth
                   </label>
@@ -250,22 +322,22 @@ const Register = () => {
                     name="dateOfBirth"
                     value={formData.dateOfBirth}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-red-300 focus:ring-4 focus:ring-red-100"
+                    className={inputClass}
                   />
                 </div>
 
                 <div className="sm:col-span-2">
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Upload Image
+                    Upload Profile Image
                   </label>
 
-                  <label className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-dashed border-red-200 bg-red-50 px-4 py-4 transition hover:bg-red-100">
+                  <label className="flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-dashed border-red-200 bg-red-50 px-4 py-4 transition hover:bg-red-100">
                     <div>
                       <p className="text-sm font-semibold text-slate-800">
-                        Choose donor image
+                        Choose image
                       </p>
                       <p className="text-xs text-slate-500">
-                        JPG, PNG or other image files
+                       Upload donor profile photo.
                       </p>
                     </div>
 
@@ -293,7 +365,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-red-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-200 transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-red-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-200 transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {loading ? "Submitting..." : "Register Now"}
               </button>

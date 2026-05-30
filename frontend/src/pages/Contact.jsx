@@ -111,7 +111,7 @@ const Contact = () => {
                       Phone
                     </p>
                     <p className="text-sm font-semibold text-slate-800">
-                      9747110010
+                      +919747110010
                     </p>
                   </div>
                 </a>
@@ -134,7 +134,7 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href="https://wa.me/9747110010"
+                  href="https://wa.me/+919747110010"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200 transition hover:bg-green-50 hover:ring-green-100"
@@ -147,7 +147,7 @@ const Contact = () => {
                       WhatsApp
                     </p>
                     <p className="text-sm font-semibold text-slate-800">
-                      9747110010
+                      +919747110010
                     </p>
                   </div>
                 </a>

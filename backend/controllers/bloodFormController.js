@@ -2,11 +2,32 @@ import bloodModel from "../models/bloodModel.js";
 
 export const addDonateMember = async (req, res) => {
   try {
-    const { fullName, email, phone, whatsapp, bloodGroup, place, dateOfBirth } =
-      req.body;
+    const {
+      fullName,
+      email,
+      phone,
+      whatsapp,
+      bloodGroup,
+      place,
+      dateOfBirth,
+      gender,
+      taluk,
+      district,
+    } = req.body;
 
-    if (!fullName || !phone || !whatsapp || !bloodGroup || !dateOfBirth) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (
+      !fullName ||
+      !phone ||
+      !whatsapp ||
+      !bloodGroup ||
+      !dateOfBirth ||
+      !gender ||
+      !taluk ||
+      !district
+    ) {
+      return res.status(400).json({
+        message: "Required fields are missing",
+      });
     }
 
     let imageurl = "";
@@ -23,8 +44,11 @@ export const addDonateMember = async (req, res) => {
       phone,
       whatsapp,
       bloodGroup,
-      dateOfBirth,
       place,
+      dateOfBirth,
+      gender,
+      taluk,
+      district,
       imageurl,
       public_id,
     });
@@ -58,7 +82,7 @@ export const getAllDonors = async (req, res) => {
 
 export const filterDonors = async (req, res) => {
   try {
-    const { name, bloodGroup } = req.query;
+    const { name, bloodGroup, gender, taluk, district } = req.query;
 
     let query = {};
 
@@ -70,7 +94,19 @@ export const filterDonors = async (req, res) => {
       query.bloodGroup = bloodGroup;
     }
 
+    if (taluk) {
+      query.taluk = taluk;
+    }
+
+    if (district) {
+      query.district = district;
+    }
+    if (gender) {
+      query.gender = gender;
+    }
+
     const donors = await bloodModel.find(query).sort({ createdAt: -1 });
+
     res.status(200).json({
       donors,
     });
@@ -81,6 +117,7 @@ export const filterDonors = async (req, res) => {
     });
   }
 };
+
 export const getDonorById = async (req, res) => {
   try {
     const id = req.params.id;
