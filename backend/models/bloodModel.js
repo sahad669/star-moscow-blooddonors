@@ -18,6 +18,7 @@ const bloodSchema = new mongoose.Schema(
     dateOfBirth: { type: Date, required: true },
 
     place: { type: String },
+    village:{type:String},
 
     taluk: { type: String },
 

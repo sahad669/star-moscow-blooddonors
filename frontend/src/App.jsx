@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
+import Error from "./pages/Error";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
     <ScrollToTop />
       <Navbar />
       <Routes>
+         <Route path="*" element={<Error />} />
         <Route path="register" element={<Register />} />
         <Route path="donor" element={<Doners />} />
         <Route path="/" element={<Home />} />
@@ -27,4 +29,21 @@ const App = () => {
 };
 
 export default App;
+
+
+// import React from "react";
+// import { Routes, Route } from "react-router-dom";
+// import Error from "./pages/Error";
+
+// const App = () => {
+//   return (
+//     <>
+//       <Routes>
+//         <Route path="*" element={<Error />} />
+//       </Routes>
+//     </>
+//   );
+// };
+
+// export default App;
 

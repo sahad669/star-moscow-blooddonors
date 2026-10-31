@@ -20,6 +20,7 @@ const Doners = () => {
   const dispatch = useDispatch();
 
   const [searchName, setSearchName] = useState("");
+  const [village,setVillage] = useState("")
   const [filterBlood, setFilterBlood] = useState("");
   const [filterGender, setFilterGender] = useState("");
   const [filterDistrict, setFilterDistrict] = useState("");
@@ -30,6 +31,7 @@ const Doners = () => {
 
   const isFilteringActive =
     searchName ||
+    village||
     filterBlood ||
     filterGender ||
     filterDistrict ||
@@ -43,6 +45,7 @@ const Doners = () => {
     const delay = setTimeout(() => {
       if (
         !searchName &&
+        !village&&
         !filterBlood &&
         !filterGender &&
         !filterDistrict &&
@@ -57,6 +60,7 @@ const Doners = () => {
             gender: filterGender,
             district: filterDistrict,
             taluk: filterTaluk,
+            village:village
           })
         );
       }
@@ -69,11 +73,13 @@ const Doners = () => {
     filterGender,
     filterDistrict,
     filterTaluk,
+    village,
     dispatch,
   ]);
 
   const handleClear = () => {
     setSearchName("");
+    setVillage("")
     setFilterBlood("");
     setFilterGender("");
     setFilterDistrict("");
@@ -441,7 +447,13 @@ const Doners = () => {
                       <div className="mt-1 flex items-center justify-center gap-1 text-sm text-blue-700">
                         <MapPin size={13} />
                         <span className="truncate">
-                          {donor.place || donor.taluk || donor.district || "N/A"}
+                         {donor.place ? donor.place.toUpperCase() : "N/A"}
+                        </span>
+                      </div>
+                       <div className="mt-1 flex items-center justify-center gap-1 text-sm text-blue-700">
+                        <MapPin size={13} />
+                        <span className="truncate">
+                        {donor.village ? donor.village.toUpperCase() : "N/A"}
                         </span>
                       </div>
 

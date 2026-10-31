@@ -409,6 +409,7 @@ const Register = () => {
     district: "",
     taluk: "",
     place: "",
+    village:"",
     dateOfBirth: "",
     image: null,
   });
@@ -447,11 +448,19 @@ const Register = () => {
     if (!formData.district.trim()) {
       newErrors.district = "This field is required.";
     }
+    if(!formData.bloodGroup.trim()){
+      newErrors.bloodGroup = "This Field is required."
+    }
 
     if (!formData.taluk.trim()) {
       newErrors.taluk = "This field is required.";
     }
-
+    if(!formData.place.trim()){
+      newErrors.place = "This field is required."
+    }
+    if(!formData.village.trim()){
+      newErrors.village = "This field is required."
+    }
     if (!formData.dateOfBirth.trim()) {
       newErrors.dateOfBirth = "This field is required.";
     }
@@ -498,6 +507,7 @@ const Register = () => {
       district: "",
       taluk: "",
       place: "",
+      village:"",
       dateOfBirth: "",
       image: null,
     });
@@ -700,6 +710,11 @@ const Register = () => {
                     <option>AB+</option>
                     <option>AB-</option>
                   </select>
+                   {errors.bloodGroup && (
+                    <p className="mt-1 text-xs font-medium text-red-500">
+                      {errors.bloodGroup}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -780,11 +795,33 @@ const Register = () => {
                   </label>
                   <input
                     name="place"
-                    placeholder="Enter place, village"
+                    placeholder="Enter place"
                     value={formData.place}
                     onChange={handleChange}
                     className={getInputClasses("place")}
                   />
+                   {errors.place && (
+                    <p className="mt-1 text-xs font-medium text-red-500">
+                      {errors.place}
+                    </p>
+                  )}
+                </div>
+                 <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-700">
+                    Village
+                  </label>
+                  <input
+                    name="village"
+                    placeholder="Enter village / Panchayat"
+                    value={formData.village}
+                    onChange={handleChange}
+                    className={getInputClasses("village")}
+                  />
+                   {errors.village && (
+                    <p className="mt-1 text-xs font-medium text-red-500">
+                      {errors.village}
+                    </p>
+                  )}
                 </div>
 
                 <div>
