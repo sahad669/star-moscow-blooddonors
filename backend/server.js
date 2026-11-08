@@ -4,6 +4,7 @@ import connect from "./config/connectDB.js";
 import cors from "cors";
 import upload from "./middleware/multer.js";
 import donateRouter from "./routes/bloodFormRouter.js";
+import userRouter from "./routes/userRouter.js"
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/BloodDoners", donateRouter);
+app.use("/api/users",userRouter)
 
 connect();
 app.listen(process.env.PORT, () => {

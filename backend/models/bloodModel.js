@@ -15,10 +15,21 @@ const bloodSchema = new mongoose.Schema(
       required: true,
     },
 
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+    },
+
     dateOfBirth: { type: Date, required: true },
 
     place: { type: String },
-    village:{type:String},
+    village: { type: String },
 
     taluk: { type: String },
 
@@ -27,7 +38,7 @@ const bloodSchema = new mongoose.Schema(
     imageurl: { type: String },
     public_id: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const bloodModel = mongoose.model("BloodDoners", bloodSchema);

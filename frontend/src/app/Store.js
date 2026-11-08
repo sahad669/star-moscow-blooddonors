@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import donorReducer from "../features/donerSlice"
-
+import authReducer from "../features/authSlice"
 
 export const Store = configureStore({
     reducer:{
-        donor:donorReducer
+        donor:donorReducer,
+        auth:authReducer
     }
 })
