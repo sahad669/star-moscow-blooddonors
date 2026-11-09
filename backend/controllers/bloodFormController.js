@@ -100,12 +100,12 @@ await sendAdminEmail({
                     <img
                       src="https://star-moscow-blooddonors.vercel.app/images/star-mosco-icon.png"
                       alt="Star Moscow Logo"
-                      width="75"
-                      height="75"
+                      width="120"
+                      height="120"
                       style="
                         display: block;
-                        width: 75px;
-                        height: 75px;
+                        width: 100px;
+                        height: 100px;
                         object-fit: contain;
                         margin: 0 auto 12px;
                         background-color: #ffffff;
@@ -552,8 +552,8 @@ if (donor.email) {
                       <img
                          src="https://star-moscow-blooddonors.vercel.app/images/star-mosco-icon.png"
                         alt="Star Moscow Logo"
-                        width="100"
-                        height="100"
+                        width="120"
+                        height="120"
                         style="
                           display: block;
                           width: 100px;
