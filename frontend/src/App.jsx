@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
-import Error from "./pages/Error";
+// import Error from "./pages/Error";
 import Signup from "./pages/signUp";
 import Signin from "./pages/signIn";
 
@@ -42,7 +42,7 @@ const App = () => {
         </Route>
 
         {/* Error route */}
-        <Route path="*" element={<Error />} />
+        {/* <Route path="*" element={<Error />} /> */}
       </Routes>
 
       <Footer />
