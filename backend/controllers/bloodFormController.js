@@ -98,7 +98,7 @@ await sendAdminEmail({
                   ">
 
                     <img
-                      src="/images/star-mosco-icon.png"
+                      src="https://star-moscow-blooddonors.vercel.app/images/star-mosco-icon.png"
                       alt="Star Moscow Logo"
                       width="75"
                       height="75"
@@ -275,7 +275,7 @@ await sendAdminEmail({
                       margin: 25px 0;
                     ">
                       <a
-                       href="http://localhost:5173/signin"
+                       href="https://star-moscow-blooddonors.vercel.app/signin"
                         style="
                           display: inline-block;
                           background-color: #dc2626;
@@ -550,7 +550,7 @@ if (donor.email) {
                     ">
 
                       <img
-                         src="/images/star-mosco-icon.png"
+                         src="https://star-moscow-blooddonors.vercel.app/images/star-mosco-icon.png"
                         alt="Star Moscow Logo"
                         width="75"
                         height="75"
