@@ -104,8 +104,8 @@ await sendAdminEmail({
                       height="120"
                       style="
                         display: block;
-                        width: 100px;
-                        height: 100px;
+                        width: 120px;
+                        height: 120px;
                         object-fit: contain;
                         margin: 0 auto 12px;
                         background-color: #ffffff;
@@ -556,8 +556,8 @@ if (donor.email) {
                         height="120"
                         style="
                           display: block;
-                          width: 100px;
-                          height: 100px;
+                          width: 120px;
+                          height: 120px;
                           object-fit: contain;
                           margin: 0 auto 12px;
                           background-color: #ffffff;
