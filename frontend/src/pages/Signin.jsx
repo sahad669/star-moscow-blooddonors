@@ -101,7 +101,7 @@ const Signin = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
-        toast.success("New donor login successful .");
+        toast.success("Doner login successfully.");
         navigate("/");
       }
     } catch (error) {

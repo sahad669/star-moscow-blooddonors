@@ -11,8 +11,8 @@ import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 // import Error from "./pages/Error";
-import Signup from "./pages/signUp";
-import Signin from "./pages/signIn";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="register" element={<Register />} />
         <Route path="donor" element={<Doners />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<Signup/>} />
         <Route path="signin" element={<Signin />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/singledonor/:id" element={<DonorDetails />} />
